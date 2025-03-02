@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titl: MyString
+  release_date: MyString
+  genre: MyString
+  artist_id: one
+
+two:
+  titl: MyString
+  release_date: MyString
+  genre: MyString
+  artist_id: two

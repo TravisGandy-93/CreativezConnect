@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  user: one
+  post: one
+  photo: one
+  video: one
+  album: one
+  track: one
+
+two:
+  content: MyString
+  user: two
+  post: two
+  photo: two
+  video: two
+  album: two
+  track: two
