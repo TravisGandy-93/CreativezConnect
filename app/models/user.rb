@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_secure_password
+    
     has_many :photos
     has_many :videos
     has_many :tracks
@@ -10,6 +12,8 @@ class User < ApplicationRecord
     has_many :artists
     # Validates that the email is present and not empty
     validates :email, presence: true
+    validates :username, presence: true
     # Validates that the email is unique across all users
     validates :email, uniqueness: true
+    validates :username, uniqueness: true
 end

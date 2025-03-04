@@ -6,9 +6,9 @@ class CreatePhotos < ActiveRecord::Migration[8.0]
       t.string :url
       t.string :genre
       t.integer :likes, default: 0
-      t.references :album_id, null: true, foreign_key: true
-      t.references :artist_id, null: false, foreign_key: true
-      t.references :track_id, null: true, foreign_key: true
+      t.references :album, null: true, foreign_key: true
+      t.references :artist, null: false, foreign_key: true
+      t.references :track, null: true, foreign_key: true
 
       t.timestamps
     end

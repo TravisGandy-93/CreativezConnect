@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root "home#index"
+
+  get "signin" => "sessions#create", as: :signup
+  post 'signin', to: 'sessions#create'
+  get 'home', to: 'home#index'
+  get 'signout', to: 'sessions#destroy', as: :signout
   resources :album_collections
   resources :comments
   resources :posts
