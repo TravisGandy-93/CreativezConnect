@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: :signout
   resources :album_collections
   resources :comments
-  resources :posts
+  namespace :api do
+    namespace :v1 do
+      resources :posts, only: [:index, :create]
+    end
+  end
   resources :users
   resources :videos
   resources :photos

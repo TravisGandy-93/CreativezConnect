@@ -20,6 +20,12 @@
   height: auto;
 }
 
+.cypher-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
 .home-pic {
   width: 90px;
   height: auto;
@@ -42,7 +48,7 @@
   background: #fafafa;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 15px;
+  padding: 0px 15px 15px 15px;
   margin: 20px 0;
 }
 

@@ -2,11 +2,12 @@ class User < ApplicationRecord
     has_secure_password
     
     has_many :photos
+    has_many :posts, dependent: :destroy
     has_many :videos
     has_many :tracks
     has_many :albums
     has_many :comments
-    has_many :album_collections, dependent: :destroy
+    has_many :album_collections, dependent: :nullify
     # The album_collections table is a join table between users and albums
     has_many :albums, through: :album_collections
     has_many :artists

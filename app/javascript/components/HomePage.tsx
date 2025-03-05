@@ -1,33 +1,28 @@
-import React from 'react'
-import { Nav, Navbar } from "react-bootstrap"
+import React, { useState, useEffect } from 'react'
+import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap"
 import '../../assets/stylesheets/application.css' // Import your CSS file here
 import Search from '../helpers/Search'
+import CypherForm from "./CypherForm";
+import CypherTimeline, { Post } from "./CypherTimeline";
+import CustomNavbar from './Navbar';
 
 function HomePage(props) {
   const { user } = props
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    fetch('/api/v1/posts')
+      .then(response => response.json())
+      .then(data => setPosts(data));
+  }, []);
+
+  const addPost = post => {
+    setPosts([post, ...posts]);
+  };
+console.log(user)
   return (
     <div>
-      <Navbar
-      collapseOnSelect
-      expand="md"
-      bg="light"
-      variant="light"
-      className="px-4 py-8 header-navbar"
-      fixed="top"
-    >
-      <Navbar.Brand>{user.username}'zConnect</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-na" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto align-items-end px-3">
-          <Nav.Link>Home</Nav.Link>
-          <Nav.Link>Cypher</Nav.Link>
-        </Nav>
-        <Nav className="ml-auto align-items-end px-3">
-          <Search />
-          <Nav.Link className="pl-4">Cart</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <CustomNavbar user={user} />
       <div className="profile-page">
       <div className="header">
         <div className="profile-picture">
@@ -41,26 +36,49 @@ function HomePage(props) {
         <p>@{user.username}</p>
       </div>
 
-      <section className="my-post-section">
-        <h2>Post</h2>
-        <textarea placeholder={'Share your thoughts.'}></textarea>
+      <section className="my-post-section" style={{textAlign: 'center'}}>
+        <h2>Mind to Masses</h2>
+        <CypherForm addPost={addPost} userId={user.userId} username={user.username}/>
       </section>
 
-      <section className="posts-section">
-        <h2>My Cypher</h2>
-        <div className="posts-list">
-          <div className="post">Alice</div>
-          <div className="post">Bob</div>
-          <div className="post">Charlie</div>
-        </div>
+      <section 
+      className="posts-section"
+      style={{height: '30vh', overflowY: 'scroll', position: 'relative'}}
+      >
+        <h2 
+        style={{textAlign: 'center', position: 'sticky', top: 0,
+        zIndex: 10, margin: 0, borderBottom: '1px solid #ddd',
+        backgroundColor: '#fafafa', padding: '10px'}}
+        >
+          My Cypher
+        </h2>
+            <CypherTimeline posts={posts} />
       </section>
       
       <section className="friends-section">
         <h2>Connections</h2>
         <div className="friends-list">
-          <div className="friend">Alice</div>
-          <div className="friend">Bob</div>
-          <div className="friend">Charlie</div>
+          <div className="friend">
+          <img 
+            className='cypher-image'
+            src='https://thumbs.dreamstime.com/b/girl-sombrero-depicting-cowboy-lifestyle-45461994.jpg'
+            alt='profile_pic'/>
+            Alice
+          </div>
+          <div className="friend">
+          <img 
+            className='cypher-image'
+            src='https://thumbs.dreamstime.com/b/girl-sombrero-depicting-cowboy-lifestyle-45461994.jpg'
+            alt='profile_pic'/>
+            Bob
+          </div>
+          <div className="friend">
+          <img 
+            className='cypher-image'
+            src='https://thumbs.dreamstime.com/b/girl-sombrero-depicting-cowboy-lifestyle-45461994.jpg'
+            alt='profile_pic'/>
+            Charlie
+          </div>
           {/* Add more friends as needed */}
         </div>
       </section>
