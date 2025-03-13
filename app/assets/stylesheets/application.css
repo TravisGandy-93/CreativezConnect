@@ -8,7 +8,35 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
- .profile-page {
+body {
+  background-image: url('https://img.freepik.com/premium-vector/set-abstract-sound-waves-isolated-white_196911-212.jpg?semt=ais_hybrid');
+  background-size: cover; /* Adjust to your preference */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 120vh;
+}
+
+table {
+  width: 80%; /* Adjust width as needed */
+  margin: 0 auto; /* Center the table */
+  border-collapse: collapse;
+  --bs-table-bg: inherit !important;
+}
+
+tr {
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+
+td {
+  color: white !important;
+}
+
+.offcanvas {
+  background-color: rgba(255, 255, 255, 0);
+
+}
+
+.profile-page {
   width: 90%;
   max-width: 960px;
   margin: 0 auto;
@@ -21,9 +49,9 @@
 }
 
 .cypher-image {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
 }
 
 .home-pic {
@@ -34,8 +62,7 @@
 .header {
   text-align: center;
   padding: 20px;
-  background: #f3f3f3;
-  border-bottom: 4px solid #ddd;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .profile-picture img {
@@ -45,7 +72,7 @@
 }
 
 .my-post-section, .posts-section, .friends-section, .photos-section, .music-section {
-  background: #fafafa;
+  background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 0px 15px 15px 15px;
@@ -76,7 +103,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ddd;
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 10px;
 }
 

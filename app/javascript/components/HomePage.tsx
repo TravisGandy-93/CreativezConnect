@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap"
 import '../../assets/stylesheets/application.css' // Import your CSS file here
-import Search from '../helpers/Search'
 import CypherForm from "./CypherForm";
 import CypherTimeline, { Post } from "./CypherTimeline";
 import CustomNavbar from './Navbar';
@@ -13,8 +11,9 @@ function HomePage(props) {
   useEffect(() => {
     fetch('/api/v1/posts')
       .then(response => response.json())
-      .then(data => setPosts(data));
+      .then(data => setPosts(data.posts));
   }, []);
+
 
   const addPost = post => {
     setPosts([post, ...posts]);
@@ -23,18 +22,18 @@ console.log(user)
   return (
     <div>
     <CustomNavbar user={user} />
-      <div className="profile-page">
-      <div className="header">
+      <div className="profile-page" style={{marginTop: '65px'}}>
+      <section className="header">
         <div className="profile-picture">
           {/* Placeholder for profile picture */}
           <img 
           className='profile-image'
           src="https://picturesofjesus.com/wp-content/uploads/2024/01/Black-Jesus-Shepherd.jpg"
           alt="Profile"
-           />
+          />
         </div>
         <p>@{user.username}</p>
-      </div>
+      </section>
 
       <section className="my-post-section" style={{textAlign: 'center'}}>
         <h2>Mind to Masses</h2>
@@ -48,11 +47,11 @@ console.log(user)
         <h2 
         style={{textAlign: 'center', position: 'sticky', top: 0,
         zIndex: 10, margin: 0, borderBottom: '1px solid #ddd',
-        backgroundColor: '#fafafa', padding: '10px'}}
+        backgroundColor: 'rgb(128, 126, 126)', padding: '10px'}}
         >
           My Cypher
         </h2>
-            <CypherTimeline posts={posts} />
+            <CypherTimeline posts={posts} setPosts={setPosts}/>
       </section>
       
       <section className="friends-section">
@@ -111,12 +110,19 @@ console.log(user)
           {/* Add more songs/albums as needed */}
         </ul>
         <h2>My Favorite Artists</h2>
+        { user.favoriteArtists.map((artist) => (
         <ul>
-          <li>Artist - Song 1</li>
-          <li>Artist - Song 2</li>
-          <li>Artist - Song 3</li>
+          <li>
+            <h4>
+              <a href={`/artists/${artist.id}`} style={{color: 'black', textUnderlinePosition: 'under'}}>
+                {artist.name}
+              </a>
+            </h4>
+          </li>
           {/* Add more artists as needed */}
         </ul>
+          )
+        )}
       </section>
     </div>
     </div>

@@ -33,6 +33,8 @@ const CypherForm: React.FC<CypherFormProps> = ({ addPost, userId, username }) =>
       });
   };
 
+  
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" style={{textAlign: 'center'}} controlId="exampleForm.ControlTextarea1">
