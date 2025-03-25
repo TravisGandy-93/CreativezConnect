@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.createRoot(homePage).render(
     <HomePage
       user={JSON.parse(homePage.getAttribute("data-user") || '{}')}
+      photoUploads={JSON.parse(homePage.getAttribute("data-photo-uploads") || '{}')}
+      audioUploads={JSON.parse(homePage.getAttribute("data-audio-uploads") || '{}')}
+      gallery_favs={JSON.parse(homePage.getAttribute("data-liked-photos") || '{}')}
     />
   )
   } else {

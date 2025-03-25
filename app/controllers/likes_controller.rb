@@ -3,12 +3,19 @@ class LikesController < ApplicationController
 
   def create
     likeable = find_likeable
-    like = likeable.likes.new(user: current_user)
+    existing_like = likeable.likes.where(user_id: current_user.id)[0]
 
-    if like.save
+    if existing_like.present?
+      Like.destroy(existing_like.id)
       render json: likeable.likes.count, status: :created
     else
-      render json: { error: like.errors.full_messages.to_sentence }, status: :unprocessable_entity
+      like = likeable.likes.new(user: current_user)
+
+      if like.save
+        render json: likeable.likes.count, status: :created
+      else
+        render json: { error: like.errors.full_messages.to_sentence }, status: :unprocessable_entity
+      end
     end
   end
 

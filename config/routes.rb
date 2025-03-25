@@ -7,9 +7,13 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: :signout
 
   get 'cypher', to: 'cypher#index'
-  get 'artists', to: 'artists#index'
+  get 'musicians', to: 'artists#musician_index'
+  get 'cinematographers', to: 'artists#cinematographer_index'
   get 'artists/:id', to: 'artists#show', as: :artist
   post 'artists/:id/edit', to: 'artists#update', as: :edit_artist
+
+  get 'photo_gallery', to: 'photos#index'
+  get 'photos/:id', to: 'photos#show', as: :photo
 
 
   resources :album_collections
@@ -40,6 +44,7 @@ Rails.application.routes.draw do
   resources :albums
   resources :artists
   post 'musicians/:id/like', to: 'likes#create'
+  post 'cinematographers/:id/like', to: 'likes#create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

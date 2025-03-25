@@ -30,12 +30,16 @@ const CustomNavbar = ({ user }) => {
                 My Connects
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/artists" >
+              <NavDropdown.Item href="/musicians" >
                 Musicians
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5" >
+              <NavDropdown.Item href="/cinematographers" >
                 Cinematographers
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/photo_gallery" >
+                Gallery
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

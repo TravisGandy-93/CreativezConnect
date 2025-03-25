@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Badge } from 'react-bootstrap';
 
 function LikeButton({ likesCount, type, id }) {
-  const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(likesCount);
 
   const fetchLikes = async () => {
@@ -23,13 +22,9 @@ function LikeButton({ likesCount, type, id }) {
 
     const data = await response.json();
     setLikes(data);
-    setLiked(true);
   }
   
   const handleLikeClick = async () => {
-    if (liked) {
-      return
-    }
     try {
       await fetchLikes();
     } catch (error) {

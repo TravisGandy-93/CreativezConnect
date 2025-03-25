@@ -23,7 +23,6 @@ const CypherTimeline = ({ posts, setPosts }) => {
     if (data.posts.length === 0) {
       setHasMore(false);
     } else {
-      console.log('data.posts:', data.posts)
       setPosts((prevPosts) => [...prevPosts, ...data.posts]);
     }
     setLoading(false);
@@ -65,7 +64,6 @@ const CypherTimeline = ({ posts, setPosts }) => {
     );
   };
 //virtualized table from react table library?
-console.log('state:', posts)
   return (
     <div>
       <ListGroup as="ul"

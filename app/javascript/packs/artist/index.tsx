@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.createRoot(artistPage).render(
     <Artist
       artist={JSON.parse(artistPage.getAttribute("data-artist") || '{}')}
+      albums={JSON.parse(artistPage.getAttribute("data-albums") || '{}')}
       user={JSON.parse(artistPage.getAttribute("data-user") || '{}')}
     />
   )

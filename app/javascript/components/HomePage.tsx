@@ -3,9 +3,9 @@ import '../../assets/stylesheets/application.css' // Import your CSS file here
 import CypherForm from "./CypherForm";
 import CypherTimeline, { Post } from "./CypherTimeline";
 import CustomNavbar from './Navbar';
+import { Col, Card } from 'react-bootstrap';
 
-function HomePage(props) {
-  const { user } = props
+const HomePage = ({user, photoUploads, audioUploads, gallery_favs}) => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ console.log(user)
 
       <section 
       className="posts-section"
-      style={{height: '30vh', overflowY: 'scroll', position: 'relative'}}
+      style={{height: '40vh', overflowY: 'scroll', position: 'relative'}}
       >
         <h2 
         style={{textAlign: 'center', position: 'sticky', top: 0,
@@ -82,39 +82,63 @@ console.log(user)
         </div>
       </section>
 
-      <section className="photos-section">
+      <section className="photos-section"
+      style={{height: '80vh'}}>
         <h2>Visual Uploads</h2>
-        <div className="photos-list">
-          {/* Placeholders for photos and videos */}
-          <img className='home-pic' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvxaW-JDDU5v_f19c7NL37FPgfcV3RgTYTYA&s" alt="Photo 1" />
-          <img className='home-pic' src="https://images-prod.anothermag.com/640/azure/another-prod/430/0/430197.jpg" alt="Photo 2" />
-          <img className='home-pic' src="https://i.scdn.co/image/ab6761610000517476f10e0b8184a497e246b8b8" alt="Photo 3" />
-          {/* Add more photos/videos as needed */}
+        <div className="photos-uploads"
+        style={{width: '100%', height: '40%', display: 'flex', justifyContent: 'space-around'}}>
+        { photoUploads.map((pic, idx) => (
+              <Col xs key={idx} className='col-sm-3'>
+                <Card bg="secondary" border="dark" style={{height: '100%'}}>
+                  <Card.Img 
+                    variant="top" 
+                    src={pic.url} 
+                    style={{height: '100%'}}
+                    onClick={()=>{window.location.href = `photos/${pic.id}`}} 
+                  />
+                </Card>
+              </Col>
+            )
+          )}
         </div>
         <h2>Gallery Favorites</h2>
-        <div className="photos-list">
-          {/* Placeholders for photos and videos */}
-          <img className='home-pic' src="https://sleeklens.com/wp-content/uploads/bfi_thumb/pexels-photo-1705094-6ohfqqn8c4v5jni4l21eqo40roxrpq0t9o5fs1u6d2d.jpeg" alt="Photo 1" />
-          <img className='home-pic' src="https://blog.silverlight.store/wp-content/uploads/2023/11/jasper-boer-1fUu0dratoM-unsplash-scaled-1.jpg" alt="Photo 2" />
-          <img className='home-pic' src="https://neilleifer.com/cdn/shop/products/1001_1200x.jpg?v=1658842638" alt="Photo 3" />
-          {/* Add more photos/videos as needed */}
+        <div className="photos-list" 
+        style={{width: '100%', height: '40%', display: 'flex', justifyContent: 'space-around'}}>
+          { gallery_favs.map((pic, idx) => (
+              <Col xs key={idx} className='col-sm-3'>
+                <Card bg="secondary" border="dark" style={{height: '100%'}}>
+                  <Card.Img 
+                    variant="top" 
+                    src={pic.url} 
+                    style={{height: '100%'}} 
+                    onClick={()=>{window.location.href = `photos/${pic.id}`}}
+                  />
+                </Card>
+              </Col>
+            )
+          )}
         </div>
       </section>
 
       <section className="music-section">
         <h2>Audio Uploads</h2>
         <ul>
-          <li>Song 1</li>
-          <li>Song 2</li>
-          <li>Song 3</li>
-          {/* Add more songs/albums as needed */}
+          {audioUploads.map((album) => (
+            <li>
+              <h4>
+              <a href={`/albums/${album.id}`} style={{color: 'black', textDecoration: 'none'}}>
+                  {album.title}
+                </a>
+              </h4>
+            </li>
+          ))}
         </ul>
         <h2>My Favorite Artists</h2>
-        { user.favoriteArtists.map((artist) => (
+        { user.favoriteArtists.slice(0, 3).map((artist) => (
         <ul>
           <li>
             <h4>
-              <a href={`/artists/${artist.id}`} style={{color: 'black', textUnderlinePosition: 'under'}}>
+              <a href={`/artists/${artist.id}`} style={{color: 'black', textDecoration: 'none'}}>
                 {artist.name}
               </a>
             </h4>

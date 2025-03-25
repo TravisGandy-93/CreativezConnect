@@ -166,6 +166,12 @@ td {
   cursor: pointer;
 }
 
+@media (max-width: 600px) {
+  .photos-list img {
+    max-width: 50%; /* Smaller size for smaller screens */
+  }
+}
+
 @keyframes fadeInWidth {
   0% {
     width: 30px;

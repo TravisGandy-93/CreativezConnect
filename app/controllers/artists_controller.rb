@@ -1,5 +1,8 @@
 class ArtistsController < ApplicationController
-  def index
+  def musician_index
+  end
+  
+  def cinematographer_index
   end
 
   def show
@@ -19,7 +22,7 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
 
     if @artist.update(artist_params)
-      render json: @artist, status: :updated
+      render json: @artist, status: :successful
     else
       render json: @artist.errors, status: :unprocessable_entity
     end
@@ -28,6 +31,6 @@ class ArtistsController < ApplicationController
   private
 
   def artist_params
-    params.require(:artist).permit(:name, :genre, :bio, :image_url, :user_id)
+    params.require(:artist).permit(:name, :art_form, :genre, :bio, :image_url, :user_id)
   end
 end

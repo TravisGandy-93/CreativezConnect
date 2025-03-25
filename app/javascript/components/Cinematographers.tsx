@@ -10,7 +10,7 @@ import ArtistForm from "./ArtistForm";
 import FavoriteButton from "./FavoriteButton";
 
 
-const Musicians = ({ artists, user }) => {
+const Cinematographers = ({ artists, user }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,7 +27,7 @@ const Musicians = ({ artists, user }) => {
     },
     {
       sortFns: {
-        MUSICIANS: (array) => array.sort((a, b) => a.name.localeCompare(b.name)),
+        CINEMATOGRAPHERS: (array) => array.sort((a, b) => a.name.localeCompare(b.name)),
         GENRE: (array) => array.sort((a, b) => a.genre.localeCompare(b.genre)),
       },
     }
@@ -51,12 +51,12 @@ const Musicians = ({ artists, user }) => {
   };
 console.log(artists)
   const COLUMNS = [
-    { label: <h3 style={{color: 'white'}}>Musicians</h3>, 
+    { label: <h3 style={{color: 'white'}}>Cinematographers</h3>, 
       renderCell: (item) => <>
-      <FavoriteButton type={'musician'} id={item.id} currentUserId={user.userId} favorites={item.favorited_by}/>
+      <FavoriteButton type={'cinematographer'} id={item.id} currentUserId={user.userId} favorites={item.favorited_by}/>
       <a href={`/artists/${item.id}`} style={{color: 'white'}}>{item.name}</a>
       </>,
-      sort: { sortKey: 'MUSICIANS' },
+      sort: { sortKey: 'CINEMATOGRAPHERS' },
     },
     { label: <h3 style={{color: 'white'}}>Genre</h3>, 
       renderCell: (item) => item.genre,
@@ -77,7 +77,7 @@ console.log(artists)
         backgroundColor: 'rgb(1, 1, 1)', color: 'white', padding: '10px',
         marginTop: '65px'}}
       > 
-          Musicians
+          Cinematographers
       </h2>
       <div style={{
         marginTop: '10px', 
@@ -123,4 +123,4 @@ console.log(artists)
   );
 };
 
-export default Musicians;
+export default Cinematographers;
