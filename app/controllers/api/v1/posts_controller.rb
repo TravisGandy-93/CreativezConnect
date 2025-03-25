@@ -38,14 +38,14 @@ module Api
           render json: @post.errors, status: :unprocessable_entity
         end
       end
-      
+
       def update
         @post = Post.find(post_params)
         @post.update(post_params)
 
         if @post.save
           @cypher_post = Post.joins(:user)
-          .select('posts.*, users.username')
+          .select("posts.*, users.username")
           .find(@post.id)
           render json: @cypher_post, status: :created
         else

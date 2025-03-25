@@ -19,9 +19,9 @@ User.destroy_all
   username: "testuser#{i}",
   email: "test_user#{i}_email@gmail.com",
   password: "password#{i}"
-  #bio: "This is a test user.",
-  #location: "Test City, Test Country",
-  #image: "https://example.com/test_user_image.jpg"
+  # bio: "This is a test user.",
+  # location: "Test City, Test Country",
+  # image: "https://example.com/test_user_image.jpg"
 )
 
 Post.create!(
@@ -33,7 +33,7 @@ Post.create!(
 
 Artist.create!(
   name: "Test Artist #{i}",
-  bio: "This is a test artist bio for artist number #{i}.",  
+  bio: "This is a test artist bio for artist number #{i}.",
   genre: "rap",
   user_id: User.last.id
 )

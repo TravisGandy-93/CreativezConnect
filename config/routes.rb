@@ -2,49 +2,49 @@ Rails.application.routes.draw do
   root "home#index"
 
   get "signin" => "sessions#create", as: :signup
-  post 'signin', to: 'sessions#create'
-  get 'home', to: 'home#index'
-  get 'signout', to: 'sessions#destroy', as: :signout
+  post "signin", to: "sessions#create"
+  get "home", to: "home#index"
+  get "signout", to: "sessions#destroy", as: :signout
 
-  get 'cypher', to: 'cypher#index'
-  get 'musicians', to: 'artists#musician_index'
-  get 'cinematographers', to: 'artists#cinematographer_index'
-  get 'artists/:id', to: 'artists#show', as: :artist
-  post 'artists/:id/edit', to: 'artists#update', as: :edit_artist
+  get "cypher", to: "cypher#index"
+  get "musicians", to: "artists#musician_index"
+  get "cinematographers", to: "artists#cinematographer_index"
+  get "artists/:id", to: "artists#show", as: :artist
+  post "artists/:id/edit", to: "artists#update", as: :edit_artist
 
-  get 'photo_gallery', to: 'photos#index'
-  get 'photos/:id', to: 'photos#show', as: :photo
+  get "photo_gallery", to: "photos#index"
+  get "photos/:id", to: "photos#show", as: :photo
 
 
   resources :album_collections
-  resources :comments, only: [:show] do
-    resource :like, only: [:create], controller: 'likes'
+  resources :comments, only: [ :show ] do
+    resource :like, only: [ :create ], controller: "likes"
   end
   namespace :api do
     namespace :v1 do
-      resources :posts, only: [:index, :create]
-    
-      post 'posts/:id/like', to: 'api/v1/posts#edit'
+      resources :posts, only: [ :index, :create ]
+
+      post "posts/:id/like", to: "api/v1/posts#edit"
     end
   end
-  resources :posts, only: [:show] do
-    resource :like, only: [:create], controller: 'likes'
+  resources :posts, only: [ :show ] do
+    resource :like, only: [ :create ], controller: "likes"
   end
 
   resources :users
-  resources :videos, only: [:show] do
-    resource :like, only: [:create], controller: 'likes'
+  resources :videos, only: [ :show ] do
+    resource :like, only: [ :create ], controller: "likes"
   end
-  resources :photos, only: [:show] do
-    resource :like, only: [:create], controller: 'likes'
+  resources :photos, only: [ :show ] do
+    resource :like, only: [ :create ], controller: "likes"
   end
-  resources :tracks, only: [:show] do
-    resource :like, only: [:create], controller: 'likes'
+  resources :tracks, only: [ :show ] do
+    resource :like, only: [ :create ], controller: "likes"
   end
   resources :albums
   resources :artists
-  post 'musicians/:id/like', to: 'likes#create'
-  post 'cinematographers/:id/like', to: 'likes#create'
+  post "musicians/:id/like", to: "likes#create"
+  post "cinematographers/:id/like", to: "likes#create"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -3,10 +3,10 @@ class CypherController < ApplicationController
   def index
     @posts = Post.left_joins(:likes)
     .joins(:user)
-    .select('posts.*, users.username, COUNT(likes.id) as likes_count')
-    .group('posts.id, users.username')
+    .select("posts.*, users.username, COUNT(likes.id) as likes_count")
+    .group("posts.id, users.username")
     .order(created_at: :desc)
-    #render json: @posts
+    # render json: @posts
   end
 
   def create
@@ -14,20 +14,20 @@ class CypherController < ApplicationController
 
     if @post.save
       @cypher_post = Post.joins(:user)
-      .select('posts.*, users.username')
+      .select("posts.*, users.username")
       .find(@post.id)
       render json: @cypher_post, status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
     end
   end
-  
+
   def update
     @post = Post.find(post_params)
 
     if @post.save
       @cypher_post = Post.joins(:user)
-      .select('posts.*, users.username')
+      .select("posts.*, users.username")
       .find(@post.id)
       render json: @cypher_post, status: :created
     else

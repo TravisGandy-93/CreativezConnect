@@ -1,7 +1,7 @@
 class ArtistsController < ApplicationController
   def musician_index
   end
-  
+
   def cinematographer_index
   end
 
@@ -17,7 +17,7 @@ class ArtistsController < ApplicationController
       render json: @artist.errors, status: :unprocessable_entity
     end
   end
-  
+
   def update
     @artist = Artist.find(params[:id])
 

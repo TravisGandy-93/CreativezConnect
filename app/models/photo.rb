@@ -7,9 +7,9 @@ class Photo < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :liked_by_users, through: :likes, source: :user
-  
+
   validates :title, presence: true
   validates :url, presence: true
   # Validates that the URL is a valid format
-  validates :url, format: { with: URI::regexp(%w[http https]), message: 'must be a valid URL' }
+  validates :url, format: { with: URI.regexp(%w[http https]), message: "must be a valid URL" }
 end

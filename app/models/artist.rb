@@ -10,5 +10,5 @@ class Artist < ApplicationRecord
     validates :name, presence: true
     # Validates that the name is present and not empty
     validates :name, uniqueness: true
-    # Validates that the name is unique across all artists
+  # Validates that the name is unique across all artists
 end
