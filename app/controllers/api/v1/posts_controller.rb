@@ -12,8 +12,8 @@ module Api
 
         @posts = @posts_page.left_joins(:likes)
         .joins(:user)
-        .select('posts.*, users.username')
-        .group('posts.id, users.username')
+        .select("posts.*, users.username")
+        .group("posts.id, users.username")
         .order(created_at: :desc)
 
         render json: {
@@ -21,7 +21,7 @@ module Api
           total_pages: @posts.total_pages,
           total_posts: @posts.total_count,
           posts: @posts.map do |post|
-            post.attributes.merge('likes_count' => Like.where(likeable_id: post.id).count)
+            post.attributes.merge("likes_count" => Like.where(likeable_id: post.id).count)
           end
         }
       end
@@ -31,7 +31,7 @@ module Api
 
         if @post.save
           @cypher_post = Post.joins(:user)
-          .select('posts.*, users.username')
+          .select("posts.*, users.username")
           .find(@post.id)
           render json: @cypher_post, status: :created
         else

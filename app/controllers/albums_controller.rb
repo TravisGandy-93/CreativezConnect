@@ -1,9 +1,7 @@
 class AlbumsController < ApplicationController
   def create
-
   end
-  
-  def show
 
+  def show
   end
 end
