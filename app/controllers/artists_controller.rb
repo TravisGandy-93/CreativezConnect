@@ -22,7 +22,7 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
 
     if @artist.update(artist_params)
-      render json: @artist, status: :successful
+      render json: @artist, status: :ok
     else
       render json: @artist.errors, status: :unprocessable_entity
     end

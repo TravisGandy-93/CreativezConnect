@@ -49,7 +49,7 @@ const Musicians = ({ artists, user }) => {
       return searchString.toLowerCase().includes(search.toLowerCase())
     }),
   };
-console.log(artists)
+  
   const COLUMNS = [
     { label: <h3 style={{color: 'white'}}>Musicians</h3>, 
       renderCell: (item) => <>

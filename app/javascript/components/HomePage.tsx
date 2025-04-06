@@ -32,7 +32,7 @@ console.log(user)
           alt="Profile"
           />
         </div>
-        <p>@{user.username}</p>
+        <p onClick={()=>window.location.href = `/users/${user.userId}`}>@{user.username}</p>
       </section>
 
       <section className="my-post-section" style={{textAlign: 'center'}}>

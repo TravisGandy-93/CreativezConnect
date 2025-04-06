@@ -10,7 +10,7 @@ export interface Post {
     created_at: string;
   }
 
-const CypherTimeline = ({ posts, setPosts }) => {
+const CypherTimeline = ({ posts, setPosts}) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);

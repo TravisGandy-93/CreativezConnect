@@ -41,10 +41,13 @@ Rails.application.routes.draw do
   resources :tracks, only: [ :show ] do
     resource :like, only: [ :create ], controller: "likes"
   end
-  resources :albums
+  resources :albums, only: [:create, :show] do
+    resources :tracks, only: [:create]
+  end
   resources :artists
   post "musicians/:id/like", to: "likes#create"
   post "cinematographers/:id/like", to: "likes#create"
+  post "albums/:id/like", to: "likes#create"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

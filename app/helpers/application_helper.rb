@@ -18,6 +18,45 @@ module ApplicationHelper
       artist.albums if artist.art_form == "musician"}.compact.flatten
     }
   end
+  
+  def user_profile_props(user)
+    #binding.pry
+    {
+      current_user: {
+        username: current_user.username,
+        userId: current_user.id,
+        # userImage: user.image,
+        userEmail: current_user.email,
+        # userBio: user.bio,
+        # userLocation: user.location
+        favoriteArtists: current_user.liked_artists
+      },
+      user: {
+        username: user.username,
+        userId: user.id,
+        # userImage: user.image,
+        userEmail: user.email,
+        # userBio: user.bio,
+        # userLocation: user.location
+        posts: user.posts,
+        favoriteArtists: user.liked_artists
+      },
+      photo_uploads: user.artists.map { |artist|
+        artist.photos if artist.art_form != "musician"}.compact.flatten,
+      liked_photos: user.likes.map { |pic|
+        pic.likeable if pic.likeable_type == "Photo" }.compact,
+      audio_uploads: user.artists.map { |artist|
+        artist.albums.map do |album|
+          album.tracks.map do |track|
+            {
+              id: track.id,
+              title: track.title,
+              audio_url: track.audio_file # This generates the URL for the file
+            }
+          end
+        end if artist.art_form == "musician"}.compact.flatten
+    }
+  end
 
   def cypher_page_props(posts)
       home_page_props
@@ -104,6 +143,21 @@ module ApplicationHelper
         # userBio: current_user.bio,
         # userLocation: current_user.location
       }
+    }
+  end
+
+  def album_show_props(album)
+    {
+      album: {
+        title: album.title,
+        description: album.description,
+        release_date: album.release_date,
+        genre: album.genre,
+        cover: album.cover,
+        tracks: album.tracks
+      },
+      artist: Artist.find(album.artist_id),
+      user: User.find(album.user_id)
     }
   end
 
